@@ -3,7 +3,7 @@
 extern syntax_tree *parse(const char *);
 
 std::stack<std::string> locstack;
-std::stack<std::string> opstack;
+//std::stack<std::string> opstack;
 int depth;
 int label_cnt;
 int loc_cnt;

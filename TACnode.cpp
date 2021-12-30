@@ -1,7 +1,7 @@
 #include "TACnode.h"
 
 extern std::stack<std::string> locstack;
-extern std::stack<std::string> opstack;
+extern std::stack<std::string> locstack;
 extern int depth;
 extern int label_cnt;
 extern int loc_cnt;
@@ -594,7 +594,7 @@ void expression_node::visit()
     println("expression", depth);
 #endif //_DEBUG_PRINT_TREE
     VISIT_CHILDREN
-   if (children_num == 3)
+    if (children_num == 3)
     {
         //assign
         std::stack<std::string> tmp;
@@ -610,7 +610,7 @@ void expression_node::visit()
             tmp.pop();
         }
         println("");
-    } 
+    }
 #ifdef _DEBUG_PRINT_TREE
     --depth;
 #endif //_DEBUG_PRINT_TREE
@@ -638,8 +638,8 @@ void simple_expression_node::visit()
     {
         //additive-expression  relop  additive-expression
         children[1]->visit();
-        std::string op = opstack.top();
-        opstack.pop();
+        std::string op = locstack.top();
+        locstack.pop();
         children[0]->visit();
         std::string left = locstack.top();
         locstack.pop();
@@ -683,8 +683,8 @@ void additive_expression_node::visit()
     {
         //additive-expression  addop  term
         children[1]->visit();
-        std::string op = opstack.top();
-        opstack.pop();
+        std::string op = locstack.top();
+        locstack.pop();
         children[0]->visit();
         std::string left = locstack.top();
         locstack.pop();
@@ -728,8 +728,8 @@ void term_node::visit()
     {
         //term  mulop  factor
         children[1]->visit();
-        std::string op = opstack.top();
-        opstack.pop();
+        std::string op = locstack.top();
+        locstack.pop();
         children[0]->visit();
         std::string left = locstack.top();
         locstack.pop();
@@ -855,7 +855,7 @@ void arg_list_node::visit()
 
 /*
  * 终结符结点：把yytext放栈顶
- * 操作符：放opstack栈顶
+ * 操作符：放locstack栈顶
  * int float 注意分配位置输出赋值
  * ID,= 输出，不要换行
  */
@@ -865,7 +865,7 @@ void ADD_node::visit()
     ++depth;
     println("ADD", depth);
 #endif //_DEBUG_PRINT_TREE
-    opstack.push(yytext);
+    locstack.push(yytext);
 #ifdef _DEBUG_PRINT_TREE
     --depth;
 #endif //_DEBUG_PRINT_TREE
@@ -877,7 +877,7 @@ void SUB_node::visit()
     ++depth;
     println("SUB", depth);
 #endif //_DEBUG_PRINT_TREE
-    opstack.push(yytext);
+    locstack.push(yytext);
 #ifdef _DEBUG_PRINT_TREE
     --depth;
 #endif //_DEBUG_PRINT_TREE
@@ -889,7 +889,7 @@ void MUL_node::visit()
     ++depth;
     println("MUL", depth);
 #endif //_DEBUG_PRINT_TREE
-    opstack.push(yytext);
+    locstack.push(yytext);
 #ifdef _DEBUG_PRINT_TREE
     --depth;
 #endif //_DEBUG_PRINT_TREE
@@ -901,7 +901,7 @@ void DIV_node::visit()
     ++depth;
     println("DIV", depth);
 #endif //_DEBUG_PRINT_TREE
-    opstack.push(yytext);
+    locstack.push(yytext);
 #ifdef _DEBUG_PRINT_TREE
     --depth;
 #endif //_DEBUG_PRINT_TREE
@@ -913,7 +913,7 @@ void LT_node::visit()
     ++depth;
     println("LT", depth);
 #endif //_DEBUG_PRINT_TREE
-    opstack.push(yytext);
+    locstack.push(yytext);
 #ifdef _DEBUG_PRINT_TREE
     --depth;
 #endif //_DEBUG_PRINT_TREE
@@ -925,7 +925,7 @@ void GT_node::visit()
     ++depth;
     println("GT", depth);
 #endif //_DEBUG_PRINT_TREE
-    opstack.push(yytext);
+    locstack.push(yytext);
 #ifdef _DEBUG_PRINT_TREE
     --depth;
 #endif //_DEBUG_PRINT_TREE
@@ -1015,7 +1015,7 @@ void LTE_node::visit()
     ++depth;
     println("LTE", depth);
 #endif //_DEBUG_PRINT_TREE
-    opstack.push(yytext);
+    locstack.push(yytext);
 #ifdef _DEBUG_PRINT_TREE
     --depth;
 #endif //_DEBUG_PRINT_TREE
@@ -1027,7 +1027,7 @@ void GTE_node::visit()
     ++depth;
     println("GTE", depth);
 #endif //_DEBUG_PRINT_TREE
-    opstack.push(yytext);
+    locstack.push(yytext);
 #ifdef _DEBUG_PRINT_TREE
     --depth;
 #endif //_DEBUG_PRINT_TREE
@@ -1039,7 +1039,7 @@ void EQ_node::visit()
     ++depth;
     println("EQ", depth);
 #endif //_DEBUG_PRINT_TREE
-    opstack.push(yytext);
+    locstack.push(yytext);
 #ifdef _DEBUG_PRINT_TREE
     --depth;
 #endif //_DEBUG_PRINT_TREE
@@ -1051,7 +1051,7 @@ void NEQ_node::visit()
     ++depth;
     println("NEQ", depth);
 #endif //_DEBUG_PRINT_TREE
-    opstack.push(yytext);
+    locstack.push(yytext);
 #ifdef _DEBUG_PRINT_TREE
     --depth;
 #endif //_DEBUG_PRINT_TREE
