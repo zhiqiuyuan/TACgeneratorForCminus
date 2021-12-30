@@ -1,0 +1,8 @@
+void SimpleFunction(int z) {
+	int x;
+	int y;
+	x = x * y * z;
+}
+void main(void) {
+	SimpleFunction(137);
+}

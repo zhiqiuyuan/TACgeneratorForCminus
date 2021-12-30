@@ -1,0 +1,9 @@
+void main(void) {
+	int x;
+	int y;
+	int m;
+	m= x*x + y * y;
+	while (m > 5) {
+		m = m - x;
+	}
+}

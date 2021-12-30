@@ -1,0 +1,9 @@
+void main(void){
+	int x;
+	int y;
+	int z;
+	if (x < y)
+	 z = x;
+	
+	z = z * z;
+}
