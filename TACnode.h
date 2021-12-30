@@ -19,9 +19,10 @@
 /*
  * 简单实现版：
  * 没有考虑
- * 1. 每个函数如何计算要保留多少空间
+ * 1. 每个函数如何计算要保留多少空间、要恢复多少空间
  * 2. 数组变量
- * 3. 对于a=call func()这种，现在的逻辑会输出a=然后pushp然后call（目前逻辑：call上下紧邻push和pop）
+ * 3. 仅测试了test下的6个简单例子
+ * 4. 对于a=call func()这种，现在的逻辑会输出a=然后pushp然后call（目前逻辑：call上下紧邻push和pop）
  */
 
 syntax_tree_node *new_TACnode(std::string kind);

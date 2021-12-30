@@ -32,10 +32,10 @@ int main(int argc, char *argv[])
     //这些结点都继承自syntax_tree_node,有visit虚函数的实现
 
     //dfs对每个结点调用visit方法
-    newtree->visit();
+    //newtree->visit();
+    tree->root->visit();
     //print_syntax_tree(stdout, tree);
     del_syntax_tree(tree);
     del_TACtree(newtree);
     return 0;
 }
-
