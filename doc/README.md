@@ -30,7 +30,7 @@ for example:
 
 cminus grammer
 
-![](\fig\cminus_grammer.jpg)
+![](.\fig\cminus_grammer.jpg)
 
 ## output
 
